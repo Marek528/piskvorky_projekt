@@ -45,12 +45,30 @@ def kontrola_plochy():
     
     return True
 
-
 nakresli_ciary()
 
+hrac = 1
 while True:
-    for i in pygame.event.get():
-        if i.type == pygame.QUIT:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             sys.exit()
-    
+        
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            
+            X = event.pos[0]
+            Y = event.pos[1]
+            
+            klikol_riadok = int(Y // 250)
+            klikol_stlpec = int(X // 250)
+
+            if volny_stvorec(klikol_riadok, klikol_stlpec):
+                if hrac == 1:
+                    oznac_stovrec(klikol_riadok, klikol_stlpec, 1)
+                    hrac = 2
+
+                elif hrac == 2:
+                    oznac_stovrec(klikol_riadok, klikol_stlpec, 2)
+                    hrac = 1
+            
+                print(plocha)
     pygame.display.update()
