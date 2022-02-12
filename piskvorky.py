@@ -6,6 +6,7 @@ pygame.init()
 SIRKA = 750
 VYSKA = 750
 SIRKA_CIARY = 15
+SIRKA_VYHERNEJ_CIARY = 20
 
 RIADKY_PLOCHY = 3
 STLPCE_PLOCHY = 3
@@ -13,7 +14,7 @@ STLPCE_PLOCHY = 3
 POLOMER_KRUHU = 70
 SIRKA_KRUHU = 20
 
-SIRKA_CIARY = 25
+SIRKA_KRIZIKA = 25
 
 FARBA_OBRAZOVKY = (255,255,255)
 FARBA_CIARY = (0,0,0)
@@ -41,8 +42,8 @@ def nakresli_objekty():
             if konzolova_plocha[riadok][stlpec] == 1:
                 pygame.draw.circle(obrazovka, RED, (int(stlpec * 250 + 125), int(riadok * 250 + 125)), POLOMER_KRUHU, SIRKA_KRUHU)
             elif konzolova_plocha[riadok][stlpec] == 2:
-                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 250 - 55), (stlpec * 250 + 250 - 55, riadok * 250 + 55), SIRKA_CIARY)
-                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 55), (stlpec * 250 + 250 - 55, riadok * 250 + 250 - 55), SIRKA_CIARY)
+                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 250 - 55), (stlpec * 250 + 250 - 55, riadok * 250 + 55), SIRKA_KRIZIKA)
+                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 55), (stlpec * 250 + 250 - 55, riadok * 250 + 250 - 55), SIRKA_KRIZIKA)
 
 def oznac_stovrec(riadok, stlpec, hrac):
     konzolova_plocha[riadok][stlpec] = hrac
@@ -60,6 +61,69 @@ def kontrola_plochy():
                 return False
     
     return True
+
+def kontrola_vyhry(hrac):
+    #kontrola vyhry
+    #vertikalne
+    for stlpec in range(STLPCE_PLOCHY):
+        if konzolova_plocha[0][stlpec] == hrac and konzolova_plocha[1][stlpec] == hrac and konzolova_plocha[2][stlpec] == hrac:
+            nakresli_vertikalnu_ciaru(stlpec, hrac)
+            return True
+
+    #horizontalne
+    for riadok in range(RIADKY_PLOCHY):
+        if konzolova_plocha[riadok][0] == hrac and konzolova_plocha[riadok][1] == hrac and konzolova_plocha[riadok][2] == hrac:
+            nakresli_horizontalnu_ciaru(riadok, hrac)
+            return True
+    
+    #diagonalne zprava 
+    if konzolova_plocha[0][0] == hrac and konzolova_plocha[1][1] == hrac and konzolova_plocha[2][2] == hrac:
+        nakresli_diagonalnu_ciaru_zprava(hrac)
+        return True
+    
+    #diagonalne zlava
+    if konzolova_plocha[2][0] == hrac and konzolova_plocha[1][1] == hrac and konzolova_plocha[0][2] == hrac:
+        nakresli_diagonalnu_ciaru_zlava(hrac)
+        return True
+    
+    return False
+
+def nakresli_vertikalnu_ciaru(stlpec, hrac):
+    pozicia_x = stlpec * 250 + 125
+
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (pozicia_x, 15), (pozicia_x, VYSKA - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_horizontalnu_ciaru(riadok, hrac):
+    pozicia_y = riadok * 250 + 125
+
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, pozicia_y), (VYSKA - 15, pozicia_y), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zprava(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, 15), (SIRKA - 15, VYSKA - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, VYSKA - 15), (SIRKA - 15, 15), SIRKA_VYHERNEJ_CIARY)
+
 
 nakresli_ciary()
 
@@ -80,15 +144,18 @@ while True:
             if volny_stvorec(klikol_riadok, klikol_stlpec):
                 if hrac == 1:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 1)
+                    kontrola_vyhry(hrac)
                     hrac = 2
 
                 elif hrac == 2:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 2)
+                    kontrola_vyhry(hrac)
                     hrac = 1
 
 
 
                 nakresli_objekty()
+                
                 
 
     pygame.display.update()
