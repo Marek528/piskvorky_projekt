@@ -124,16 +124,25 @@ def nakresli_diagonalnu_ciaru_zlava(hrac):
 
     pygame.draw.line(obrazovka, farba, (15, VYSKA - 15), (SIRKA - 15, 15), SIRKA_VYHERNEJ_CIARY)
 
+def restart():
+    obrazovka.fill(FARBA_OBRAZOVKY)
+    nakresli_ciary()
+    hrac = 1
+    for riadok in range(RIADKY_PLOCHY):
+        for stlpec in range(STLPCE_PLOCHY):
+            konzolova_plocha[riadok][stlpec] = 0
 
 nakresli_ciary()
 
 hrac = 1
+koniec_hry = False
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN and not koniec_hry:
             
             X = event.pos[0]
             Y = event.pos[1]
@@ -144,18 +153,23 @@ while True:
             if volny_stvorec(klikol_riadok, klikol_stlpec):
                 if hrac == 1:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 1)
-                    kontrola_vyhry(hrac)
+                    if kontrola_vyhry(hrac):
+                        koniec_hry = True
+                        # vypisanie textu vyhral hrac
                     hrac = 2
 
                 elif hrac == 2:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 2)
-                    kontrola_vyhry(hrac)
+                    if kontrola_vyhry(hrac):
+                        koniec_hry = True
+                        # vypisanie textu vyhral hrac
                     hrac = 1
 
-
-
                 nakresli_objekty()
-                
+            
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_KP_ENTER or pygame.K_RETURN:
+                restart()
                 
 
     pygame.display.update()
