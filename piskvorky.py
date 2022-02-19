@@ -4,17 +4,20 @@ import numpy as np
 pygame.init()
 
 SIRKA = 750
-VYSKA = 750
+VYSKA = SIRKA
 SIRKA_CIARY = 15
 SIRKA_VYHERNEJ_CIARY = 20
 
 RIADKY_PLOCHY = 3
 STLPCE_PLOCHY = 3
 
-POLOMER_KRUHU = 70
+VELKOST_POLICOK = SIRKA // STLPCE_PLOCHY
+
+POLOMER_KRUHU = VELKOST_POLICOK // 3
 SIRKA_KRUHU = 20
 
 SIRKA_KRIZIKA = 25
+MEDZERA = VELKOST_POLICOK // 4
 
 FARBA_OBRAZOVKY = (255,255,255)
 FARBA_CIARY = (0,0,0)
@@ -29,21 +32,21 @@ konzolova_plocha = np.zeros((RIADKY_PLOCHY, STLPCE_PLOCHY))
 
 def nakresli_ciary():
     #horizontalne ciary
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, 250), (750, 250), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, 500), (750, 500), SIRKA_CIARY)
+    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK), (SIRKA, VELKOST_POLICOK), SIRKA_CIARY)
+    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 2), (SIRKA, VELKOST_POLICOK * 2), SIRKA_CIARY)
 
     #vertikalne ciary
-    pygame.draw.line(obrazovka, FARBA_CIARY, (250, 0), (250, 750), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (500, 0), (500, 750), SIRKA_CIARY)
+    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK, 0), (VELKOST_POLICOK, VYSKA), SIRKA_CIARY)
+    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 2, 0), (VELKOST_POLICOK * 2, VYSKA), SIRKA_CIARY)
 
 def nakresli_objekty():
     for riadok in range(RIADKY_PLOCHY):
         for stlpec in range(STLPCE_PLOCHY):
             if konzolova_plocha[riadok][stlpec] == 1:
-                pygame.draw.circle(obrazovka, RED, (int(stlpec * 250 + 125), int(riadok * 250 + 125)), POLOMER_KRUHU, SIRKA_KRUHU)
+                pygame.draw.circle(obrazovka, RED, (int(stlpec * VELKOST_POLICOK + VELKOST_POLICOK // 2), int(riadok * VELKOST_POLICOK + VELKOST_POLICOK // 2)), POLOMER_KRUHU, SIRKA_KRUHU)
             elif konzolova_plocha[riadok][stlpec] == 2:
-                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 250 - 55), (stlpec * 250 + 250 - 55, riadok * 250 + 55), SIRKA_KRIZIKA)
-                pygame.draw.line(obrazovka, BLUE, (stlpec * 250 + 55, riadok * 250 + 55), (stlpec * 250 + 250 - 55, riadok * 250 + 250 - 55), SIRKA_KRIZIKA)
+                pygame.draw.line(obrazovka, BLUE, (stlpec * VELKOST_POLICOK + MEDZERA, riadok * VELKOST_POLICOK + VELKOST_POLICOK - MEDZERA), (stlpec * VELKOST_POLICOK + VELKOST_POLICOK - MEDZERA, riadok * VELKOST_POLICOK + MEDZERA), SIRKA_KRIZIKA)
+                pygame.draw.line(obrazovka, BLUE, (stlpec * VELKOST_POLICOK + MEDZERA, riadok * VELKOST_POLICOK + MEDZERA), (stlpec * VELKOST_POLICOK + VELKOST_POLICOK - MEDZERA, riadok * VELKOST_POLICOK + VELKOST_POLICOK - MEDZERA), SIRKA_KRIZIKA)
 
 def oznac_stovrec(riadok, stlpec, hrac):
     konzolova_plocha[riadok][stlpec] = hrac
@@ -89,7 +92,7 @@ def kontrola_vyhry(hrac):
     return False
 
 def nakresli_vertikalnu_ciaru(stlpec, hrac):
-    pozicia_x = stlpec * 250 + 125
+    pozicia_x = stlpec * VELKOST_POLICOK + VELKOST_POLICOK // 2
 
     if hrac == 1:
         farba = RED
@@ -99,7 +102,7 @@ def nakresli_vertikalnu_ciaru(stlpec, hrac):
     pygame.draw.line(obrazovka, farba, (pozicia_x, 15), (pozicia_x, VYSKA - 15), SIRKA_VYHERNEJ_CIARY)
 
 def nakresli_horizontalnu_ciaru(riadok, hrac):
-    pozicia_y = riadok * 250 + 125
+    pozicia_y = riadok * VELKOST_POLICOK + VELKOST_POLICOK // 2
 
     if hrac == 1:
         farba = RED
@@ -147,22 +150,20 @@ while True:
             X = event.pos[0]
             Y = event.pos[1]
             
-            klikol_riadok = int(Y // 250)
-            klikol_stlpec = int(X // 250)
+            klikol_riadok = int(Y // VELKOST_POLICOK)
+            klikol_stlpec = int(X // VELKOST_POLICOK)
 
             if volny_stvorec(klikol_riadok, klikol_stlpec):
                 if hrac == 1:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 1)
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
-                        # vypisanie textu vyhral hrac
                     hrac = 2
 
                 elif hrac == 2:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 2)
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
-                        # vypisanie textu vyhral hrac
                     hrac = 1
 
                 nakresli_objekty()
@@ -170,6 +171,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_KP_ENTER or pygame.K_RETURN:
                 restart()
+                koniec_hry = False
                 
 
     pygame.display.update()
