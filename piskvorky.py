@@ -31,6 +31,8 @@ obrazovka.fill(FARBA_OBRAZOVKY)
 
 konzolova_plocha = np.zeros((RIADKY_PLOCHY, STLPCE_PLOCHY))
 
+font = pygame.font.Font('freesansbold.ttf', MEDZERA)
+
 def nakresli_ciary():
     #horizontalne ciary
     pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK), (SIRKA, VELKOST_POLICOK), SIRKA_CIARY)
@@ -129,7 +131,6 @@ def nakresli_diagonalnu_ciaru_zlava(hrac):
     pygame.draw.line(obrazovka, farba, (15, VYSKA - 15), (SIRKA - 15, 15), SIRKA_VYHERNEJ_CIARY)
 
 def vypis_vyhry():
-    font = pygame.font.Font('freesansbold.ttf', MEDZERA)
     vyhra_o = font.render('O vyhral!', True, RED, DARK_BLUE)
     vyhra_x = font.render('X vyhral!', True, BLUE, DARK_BLUE)
     if hrac == 1:
@@ -172,6 +173,10 @@ while True:
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
                         vypis_vyhry()
+                    elif kontrola_plochy():
+                        remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
+                        textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
+                        obrazovka.blit(remiza, textRect)
                     hrac = 2
 
                 elif hrac == 2:
@@ -180,6 +185,10 @@ while True:
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
                         vypis_vyhry()
+                    elif kontrola_plochy():
+                        remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
+                        textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
+                        obrazovka.blit(remiza, textRect)
                     hrac = 1
 
         if event.type == pygame.KEYDOWN:
