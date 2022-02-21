@@ -18,11 +18,12 @@ SIRKA_KRUHU = 20
 
 SIRKA_KRIZIKA = 25
 MEDZERA = VELKOST_POLICOK // 4
-
+#farby
 FARBA_OBRAZOVKY = (255,255,255)
 FARBA_CIARY = (0,0,0)
 BLUE = (0,0,255)
 RED = (255,0,0)
+DARK_BLUE = (0,0,128)
 
 obrazovka = pygame.display.set_mode((SIRKA, VYSKA))
 pygame.display.set_caption('Piskovrky')
@@ -127,6 +128,17 @@ def nakresli_diagonalnu_ciaru_zlava(hrac):
 
     pygame.draw.line(obrazovka, farba, (15, VYSKA - 15), (SIRKA - 15, 15), SIRKA_VYHERNEJ_CIARY)
 
+def vypis_vyhry():
+    font = pygame.font.Font('freesansbold.ttf', MEDZERA)
+    vyhra_o = font.render('O vyhral!', True, RED, DARK_BLUE)
+    vyhra_x = font.render('X vyhral!', True, BLUE, DARK_BLUE)
+    if hrac == 1:
+        textRect = vyhra_o.get_rect(center=(VYSKA // 2, SIRKA // 2))
+        obrazovka.blit(vyhra_o, textRect)
+    elif hrac == 2:
+        textRect = vyhra_x.get_rect(center=(VYSKA // 2, SIRKA // 2))
+        obrazovka.blit(vyhra_x, textRect)
+        
 def restart():
     obrazovka.fill(FARBA_OBRAZOVKY)
     nakresli_ciary()
@@ -156,18 +168,20 @@ while True:
             if volny_stvorec(klikol_riadok, klikol_stlpec):
                 if hrac == 1:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 1)
+                    nakresli_objekty()
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
+                        vypis_vyhry()
                     hrac = 2
 
                 elif hrac == 2:
                     oznac_stovrec(klikol_riadok, klikol_stlpec, 2)
+                    nakresli_objekty()
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
+                        vypis_vyhry()
                     hrac = 1
 
-                nakresli_objekty()
-            
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_KP_ENTER or pygame.K_RETURN:
                 restart()
