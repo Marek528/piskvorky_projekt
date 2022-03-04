@@ -36,21 +36,13 @@ font = pygame.font.Font('freesansbold.ttf', MEDZERA + 50)
 def nakresli_ciary():
     #horizontalne ciary
     pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK), (SIRKA, VELKOST_POLICOK), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 2), (SIRKA, VELKOST_POLICOK * 2), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 3), (SIRKA, VELKOST_POLICOK * 3), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 4), (SIRKA, VELKOST_POLICOK * 4), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 5), (SIRKA, VELKOST_POLICOK * 5), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 6), (SIRKA, VELKOST_POLICOK * 6), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * 7), (SIRKA, VELKOST_POLICOK * 7), SIRKA_CIARY)
+    for i in range(2,8):
+        pygame.draw.line(obrazovka, FARBA_CIARY, (0, VELKOST_POLICOK * i), (SIRKA, VELKOST_POLICOK * i), SIRKA_CIARY)
 
     #vertikalne ciary
     pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK, 0), (VELKOST_POLICOK, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 2, 0), (VELKOST_POLICOK * 2, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 3, 0), (VELKOST_POLICOK * 3, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 4, 0), (VELKOST_POLICOK * 4, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 5, 0), (VELKOST_POLICOK * 5, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 6, 0), (VELKOST_POLICOK * 6, VYSKA), SIRKA_CIARY)
-    pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * 7, 0), (VELKOST_POLICOK * 7, VYSKA), SIRKA_CIARY)
+    for i in range(2,8):
+        pygame.draw.line(obrazovka, FARBA_CIARY, (VELKOST_POLICOK * i, 0), (VELKOST_POLICOK * i, VYSKA), SIRKA_CIARY)
 
 def nakresli_objekty():
     for riadok in range(RIADKY_PLOCHY):
