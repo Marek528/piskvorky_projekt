@@ -82,14 +82,14 @@ def kontrola_vyhry(hrac):
             nakresli_horizontalnu_ciaru(riadok, hrac)
             return True
     
-    #diagonalne zprava 
+    #diagonalne zlava 
     if konzolova_plocha[0][0] == hrac and konzolova_plocha[1][1] == hrac and konzolova_plocha[2][2] == hrac:
-        nakresli_diagonalnu_ciaru_zprava(hrac)
+        nakresli_diagonalnu_ciaru_zlava(hrac)
         return True
     
-    #diagonalne zlava
+    #diagonalne zprava
     if konzolova_plocha[2][0] == hrac and konzolova_plocha[1][1] == hrac and konzolova_plocha[0][2] == hrac:
-        nakresli_diagonalnu_ciaru_zlava(hrac)
+        nakresli_diagonalnu_ciaru_zprava(hrac)
         return True
     
     return False
@@ -114,7 +114,7 @@ def nakresli_horizontalnu_ciaru(riadok, hrac):
 
     pygame.draw.line(obrazovka, farba, (15, pozicia_y), (VYSKA - 15, pozicia_y), SIRKA_VYHERNEJ_CIARY)
 
-def nakresli_diagonalnu_ciaru_zprava(hrac):
+def nakresli_diagonalnu_ciaru_zlava(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
@@ -122,7 +122,7 @@ def nakresli_diagonalnu_ciaru_zprava(hrac):
 
     pygame.draw.line(obrazovka, farba, (15, 15), (SIRKA - 15, VYSKA - 15), SIRKA_VYHERNEJ_CIARY)
 
-def nakresli_diagonalnu_ciaru_zlava(hrac):
+def nakresli_diagonalnu_ciaru_zprava(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
