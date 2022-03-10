@@ -109,6 +109,7 @@ def kontrola_vyhry(hrac):
             return True
 
     #diagonalne zlava \
+    # lava cast \ --- 1
     for i in range(5):
         if konzolova_plocha[i][i] == hrac and konzolova_plocha[i + 1][i + 1] == hrac and konzolova_plocha[i + 2][i + 2] == hrac and konzolova_plocha[i + 3][i + 3] == hrac:
             if i == 0:
@@ -127,39 +128,95 @@ def kontrola_vyhry(hrac):
                 nakresli_diagonalnu_ciaru_zlava_4(hrac)
                 return True
 
+    # lava cast \ --- 2
     if konzolova_plocha[1][0] == hrac and konzolova_plocha[2][1] == hrac and konzolova_plocha[3][2] == hrac and konzolova_plocha[4][3] == hrac:
-        nakresli_diagonalnu_ciaru_zlava_1_5(hrac)
+        nakresli_diagonalnu_ciaru_zlava_5_1(hrac)
         return True
-
     if konzolova_plocha[2][1] == hrac and konzolova_plocha[3][2] == hrac and konzolova_plocha[4][3] == hrac and konzolova_plocha[5][4] == hrac:
-        nakresli_diagonalnu_ciaru_zlava_1_6(hrac)
+        nakresli_diagonalnu_ciaru_zlava_5_2(hrac)
         return True
-
     if konzolova_plocha[3][2] == hrac and konzolova_plocha[4][3] == hrac and konzolova_plocha[5][4] == hrac and konzolova_plocha[6][5] == hrac:
-        nakresli_diagonalnu_ciaru_zlava_1_7(hrac)
+        nakresli_diagonalnu_ciaru_zlava_5_3(hrac)
+        return True
+    if konzolova_plocha[4][3] == hrac and konzolova_plocha[5][4] == hrac and konzolova_plocha[6][5] == hrac and konzolova_plocha[7][6] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_5_4(hrac)
         return True
 
-    if konzolova_plocha[4][3] == hrac and konzolova_plocha[5][4] == hrac and konzolova_plocha[6][5] == hrac and konzolova_plocha[7][6] == hrac:
-        nakresli_diagonalnu_ciaru_zlava_1_8(hrac)
+    # lava cast \ --- 3
+    if konzolova_plocha[2][0] == hrac and konzolova_plocha[3][1] == hrac and konzolova_plocha[4][2] == hrac and konzolova_plocha[5][3] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_6_1(hrac)
+        return True
+    if konzolova_plocha[3][1] == hrac and konzolova_plocha[4][2] == hrac and konzolova_plocha[5][3] == hrac and konzolova_plocha[6][4] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_6_2(hrac)
+        return True
+    if konzolova_plocha[4][2] == hrac and konzolova_plocha[5][3] == hrac and konzolova_plocha[6][4] == hrac and konzolova_plocha[7][5] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_6_3(hrac)
+        return True
+
+    # lava cast \ --- 4
+    if konzolova_plocha[3][0] == hrac and konzolova_plocha[4][1] == hrac and konzolova_plocha[5][2] == hrac and konzolova_plocha[6][3] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_7_1(hrac)
+        return True
+    if konzolova_plocha[4][1] == hrac and konzolova_plocha[5][2] == hrac and konzolova_plocha[6][3] == hrac and konzolova_plocha[7][4] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_7_2(hrac)
+        return True
+    
+    # lava cast \ --- 5
+    if konzolova_plocha[4][0] == hrac and konzolova_plocha[5][1] == hrac and konzolova_plocha[6][2] == hrac and konzolova_plocha[7][3] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_8_1(hrac)
+        return True
+    
+    # prava cast \ --- 6
+    if konzolova_plocha[0][1] == hrac and konzolova_plocha[1][2] == hrac and konzolova_plocha[2][3] == hrac and konzolova_plocha[3][4] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_9_1(hrac)
+        return True
+    if konzolova_plocha[1][2] == hrac and konzolova_plocha[2][3] == hrac and konzolova_plocha[3][4] == hrac and konzolova_plocha[4][5] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_9_2(hrac)
+        return True
+    if konzolova_plocha[2][3] == hrac and konzolova_plocha[3][4] == hrac and konzolova_plocha[4][5] == hrac and konzolova_plocha[5][6] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_9_3(hrac)
+        return True
+    if konzolova_plocha[3][4] == hrac and konzolova_plocha[4][5] == hrac and konzolova_plocha[5][6] == hrac and konzolova_plocha[6][7] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_9_4(hrac)
+        return True
+
+    # prava cast \ --- 7
+    if konzolova_plocha[0][2] == hrac and konzolova_plocha[1][3] == hrac and konzolova_plocha[2][4] == hrac and konzolova_plocha[3][5] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_10_1(hrac)
+        return True
+    if konzolova_plocha[1][3] == hrac and konzolova_plocha[2][4] == hrac and konzolova_plocha[3][5] == hrac and konzolova_plocha[4][6] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_10_2(hrac)
+        return True
+    if konzolova_plocha[2][4] == hrac and konzolova_plocha[3][5] == hrac and konzolova_plocha[4][6] == hrac and konzolova_plocha[5][7] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_10_3(hrac)
+        return True
+
+    # prava cast \ --- 8
+    if konzolova_plocha[0][3] == hrac and konzolova_plocha[1][4] == hrac and konzolova_plocha[2][5] == hrac and konzolova_plocha[3][6] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_11_1(hrac)
+        return True
+    if konzolova_plocha[1][4] == hrac and konzolova_plocha[2][5] == hrac and konzolova_plocha[3][6] == hrac and konzolova_plocha[4][7] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_11_2(hrac)
+        return True
+
+    # prava cast \ --- 9
+    if konzolova_plocha[0][4] == hrac and konzolova_plocha[1][5] == hrac and konzolova_plocha[2][6] == hrac and konzolova_plocha[3][7] == hrac:
+        nakresli_diagonalnu_ciaru_zlava_12_1(hrac)
         return True
 
     #diagonalne zprava /
     if konzolova_plocha[0][7] == hrac and konzolova_plocha[1][6] == hrac and konzolova_plocha[2][5] == hrac and konzolova_plocha[3][4] == hrac:
         nakresli_diagonalnu_ciaru_zprava_0(hrac)
         return True
-    
     if konzolova_plocha[1][6] == hrac and konzolova_plocha[2][5] == hrac and konzolova_plocha[3][4] == hrac and konzolova_plocha[4][3] == hrac:
         nakresli_diagonalnu_ciaru_zprava_1(hrac)
         return True
-
     if konzolova_plocha[2][5] == hrac and konzolova_plocha[3][4] == hrac and konzolova_plocha[4][3] == hrac and konzolova_plocha[5][2] == hrac:
         nakresli_diagonalnu_ciaru_zprava_2(hrac)
         return True
-
     if konzolova_plocha[3][4] == hrac and konzolova_plocha[4][3] == hrac and konzolova_plocha[5][2] == hrac and konzolova_plocha[6][1] == hrac:
         nakresli_diagonalnu_ciaru_zprava_3(hrac)
         return True
-
     if konzolova_plocha[4][3] == hrac and konzolova_plocha[5][2] == hrac and konzolova_plocha[6][1] == hrac and konzolova_plocha[7][0] == hrac:
         nakresli_diagonalnu_ciaru_zprava_4(hrac)
         return True
@@ -269,6 +326,7 @@ def nakresli_horizontalnu_ciaru_4(riadok, hrac):
     pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, pozicia_y), (VELKOST_POLICOK * 8 - 15, pozicia_y), SIRKA_VYHERNEJ_CIARY)
 
 #diagonalne \
+# lava cast \ --- 1
 def nakresli_diagonalnu_ciaru_zlava_0(hrac):
     if hrac == 1:
         farba = RED
@@ -309,8 +367,8 @@ def nakresli_diagonalnu_ciaru_zlava_4(hrac):
 
     pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, VELKOST_POLICOK * 4 + 15), (VELKOST_POLICOK * 8 - 15, VELKOST_POLICOK * 8 - 15), SIRKA_VYHERNEJ_CIARY)
 
-
-def nakresli_diagonalnu_ciaru_zlava_1_5(hrac):
+# lava cast \ --- 2
+def nakresli_diagonalnu_ciaru_zlava_5_1(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
@@ -318,7 +376,7 @@ def nakresli_diagonalnu_ciaru_zlava_1_5(hrac):
 
     pygame.draw.line(obrazovka, farba, (15, VELKOST_POLICOK + 15), (VELKOST_POLICOK * 4 - 15, VELKOST_POLICOK * 5 - 15), SIRKA_VYHERNEJ_CIARY)
 
-def nakresli_diagonalnu_ciaru_zlava_1_6(hrac):
+def nakresli_diagonalnu_ciaru_zlava_5_2(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
@@ -326,7 +384,7 @@ def nakresli_diagonalnu_ciaru_zlava_1_6(hrac):
 
     pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK + 15, VELKOST_POLICOK * 2 + 15), (VELKOST_POLICOK * 5 - 15, VELKOST_POLICOK * 6 - 15), SIRKA_VYHERNEJ_CIARY)
 
-def nakresli_diagonalnu_ciaru_zlava_1_7(hrac):
+def nakresli_diagonalnu_ciaru_zlava_5_3(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
@@ -334,13 +392,148 @@ def nakresli_diagonalnu_ciaru_zlava_1_7(hrac):
 
     pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 2 + 15, VELKOST_POLICOK * 3 + 15), (VELKOST_POLICOK * 6 - 15, VELKOST_POLICOK * 7 - 15), SIRKA_VYHERNEJ_CIARY)
 
-def nakresli_diagonalnu_ciaru_zlava_1_8(hrac):
+def nakresli_diagonalnu_ciaru_zlava_5_4(hrac):
     if hrac == 1:
         farba = RED
     elif hrac == 2:
         farba = BLUE
 
     pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 3 + 15, VELKOST_POLICOK * 4 + 15), (VELKOST_POLICOK * 7 - 15, VELKOST_POLICOK * 8 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# lava cast \ --- 3
+def nakresli_diagonalnu_ciaru_zlava_6_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, VELKOST_POLICOK * 2 + 15), (VELKOST_POLICOK * 4 - 15, VELKOST_POLICOK * 6 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_6_2(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK + 15, VELKOST_POLICOK * 3 + 15), (VELKOST_POLICOK * 5 - 15, VELKOST_POLICOK * 7 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_6_3(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 2 + 15, VELKOST_POLICOK * 4 + 15), (VELKOST_POLICOK * 6 - 15, VELKOST_POLICOK * 8 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# lava cast \ --- 4
+def nakresli_diagonalnu_ciaru_zlava_7_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, VELKOST_POLICOK * 3 + 15), (VELKOST_POLICOK * 4 - 15, VELKOST_POLICOK * 7 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_7_2(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK + 15, VELKOST_POLICOK * 4 + 15), (VELKOST_POLICOK * 5 - 15, VELKOST_POLICOK * 8 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# lava cast \ --- 5
+def nakresli_diagonalnu_ciaru_zlava_8_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (15, VELKOST_POLICOK * 4 + 15), (VELKOST_POLICOK * 4 - 15, VELKOST_POLICOK * 8 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# prava cast \ --- 6
+def nakresli_diagonalnu_ciaru_zlava_9_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK + 15, 15), (VELKOST_POLICOK * 5 - 15, VELKOST_POLICOK * 4 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_9_2(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 2 + 15, VELKOST_POLICOK + 15), (VELKOST_POLICOK * 6 - 15, VELKOST_POLICOK * 5 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_9_3(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 3 + 15, VELKOST_POLICOK * 2 + 15), (VELKOST_POLICOK * 7 - 15, VELKOST_POLICOK * 6 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_9_4(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, VELKOST_POLICOK * 3 + 15), (VELKOST_POLICOK * 8 - 15, VELKOST_POLICOK * 7 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# prava cast \ --- 7
+def nakresli_diagonalnu_ciaru_zlava_10_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 2 + 15, 15), (VELKOST_POLICOK * 6 - 15, VELKOST_POLICOK * 4 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_10_2(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 3 + 15, VELKOST_POLICOK + 15), (VELKOST_POLICOK * 7 - 15, VELKOST_POLICOK * 5 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_10_3(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, VELKOST_POLICOK * 2 + 15), (VELKOST_POLICOK * 8 - 15, VELKOST_POLICOK * 6 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# prava cast \ --- 8
+def nakresli_diagonalnu_ciaru_zlava_11_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 3 + 15, 15), (VELKOST_POLICOK * 7 - 15, VELKOST_POLICOK * 4 - 15), SIRKA_VYHERNEJ_CIARY)
+
+def nakresli_diagonalnu_ciaru_zlava_11_2(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, VELKOST_POLICOK + 15), (VELKOST_POLICOK * 8 - 15, VELKOST_POLICOK * 5 - 15), SIRKA_VYHERNEJ_CIARY)
+
+# prava cast \ --- 9
+def nakresli_diagonalnu_ciaru_zlava_12_1(hrac):
+    if hrac == 1:
+        farba = RED
+    elif hrac == 2:
+        farba = BLUE
+
+    pygame.draw.line(obrazovka, farba, (VELKOST_POLICOK * 4 + 15, 15), (VELKOST_POLICOK * 8 - 15, VELKOST_POLICOK * 4 - 15), SIRKA_VYHERNEJ_CIARY)
 
 #diagonalne /
 def nakresli_diagonalnu_ciaru_zprava_0(hrac):
