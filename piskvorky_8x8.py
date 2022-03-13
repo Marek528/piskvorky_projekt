@@ -631,7 +631,7 @@ while True:
                     nakresli_objekty()
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
-                        #vypis_vyhry()
+                        vypis_vyhry()
                     elif kontrola_plochy():
                         remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
                         textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
