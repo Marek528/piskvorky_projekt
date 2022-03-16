@@ -598,7 +598,11 @@ def vypis_vyhry():
     elif hrac == 2:
         textRect = vyhra_x.get_rect(center=(VYSKA // 2, SIRKA // 2))
         obrazovka.blit(vyhra_x, textRect)
-        
+
+def zvuk_vyhry():
+    pygame.mixer.music.load('zvuky/vyhra.mp3')
+    pygame.mixer.music.play(0)
+
 def restart():
     obrazovka.fill(FARBA_OBRAZOVKY)
     nakresli_ciary()
@@ -611,6 +615,9 @@ nakresli_ciary()
 
 hrac = 1
 koniec_hry = False
+
+remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
+textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
 
 while True:
     for event in pygame.event.get():
@@ -632,9 +639,8 @@ while True:
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
                         vypis_vyhry()
+                        zvuk_vyhry()
                     elif kontrola_plochy():
-                        remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
-                        textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
                         obrazovka.blit(remiza, textRect)
                     hrac = 2
 
@@ -644,14 +650,13 @@ while True:
                     if kontrola_vyhry(hrac):
                         koniec_hry = True
                         vypis_vyhry()
+                        zvuk_vyhry()
                     elif kontrola_plochy():
-                        remiza = font.render('REMIZA!', True, FARBA_OBRAZOVKY, DARK_BLUE)
-                        textRect = remiza.get_rect(center=(VYSKA // 2, SIRKA // 2))
                         obrazovka.blit(remiza, textRect)
                     hrac = 1
 
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_KP_ENTER or pygame.K_RETURN:
+            if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                 restart()
                 koniec_hry = False
                 
