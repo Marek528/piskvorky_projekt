@@ -199,6 +199,7 @@ while True:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_KP_ENTER or pygame.K_RETURN:
                 restart()
+                hrac = 1
                 koniec_hry = False
                 
 
